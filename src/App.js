@@ -7,15 +7,11 @@ class App extends Component {
     console.log("This is my initializer")
 
   const movies = [
-    {id:0, title:"Avengers:Infinity War", overview:"As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle"},
+    {id:0, poster_src:"https://image.tmdb.org/t/p/w185_and_h278_bestv2/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg", title:"Avengers:Infinity War", overview:"As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle"},
     {id:1, title:"The Avengers", overview:"This is my second overview"},
   ]
 
-  this.state={rows:[
-  <p key="1"> This is my row0</p>,
-  <p key="2"> This is my row1</p>,
-  <p key="3"> This is my row2</p>,
-  ]}
+ 
 
   var movieRows = []
   movies.forEach((movie) => {
@@ -25,10 +21,11 @@ class App extends Component {
       <tbody>
         <tr>
           <td>
-            <img src=""/>
+          <img alt="poster" width="120" src={movie.poster_src}/>
           </td>
           <td>
             {movie.title}
+            <p>{movie.overview}</p>
           </td>
         </tr>
 
@@ -45,7 +42,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
          <table className= "titleBar">
            <tbody>
              <tr>
