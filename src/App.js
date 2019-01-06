@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import MovieRow from './MovieRow.js';
 
 class App extends Component {
   constructor(props){
@@ -16,7 +17,8 @@ class App extends Component {
   var movieRows = []
   movies.forEach((movie) => {
     console.log(movie.title)
-    const movieRow = 
+    const movieRow = <MovieRow/>
+    /*const movieRow = 
     <table key={movie.id}>
       <tbody>
         <tr>
@@ -30,7 +32,7 @@ class App extends Component {
         </tr>
 
       </tbody>
-    </table>
+    </table>*/
   movieRows.push(movieRow)
   })
 
