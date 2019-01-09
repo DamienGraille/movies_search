@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import MovieRow from './MovieRow.js';
+import $ from 'jquery'
+
 
 class App extends Component {
   constructor(props){
     super(props)
-    console.log("This is my initializer")
+    this.state = {}
+   /* console.log("This is my initializer")
 
   const movies = [
     {id:0, poster_src:"https://image.tmdb.org/t/p/w185_and_h278_bestv2/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg", title:"Avengers:Infinity War", overview:"As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle"},
-    {id:1, title:"The Avengers", overview:"This is my second overview"},
+    {id:1,poster_src:"https://image.tmdb.org/t/p/w185_and_h278_bestv2/cezWGskPY5x7GaglTTRN4Fugfb8.jpg",title:"The Avengers", overview:"This is my second overview"},
   ]
 
  
@@ -17,28 +20,29 @@ class App extends Component {
   var movieRows = []
   movies.forEach((movie) => {
     console.log(movie.title)
-    const movieRow = <MovieRow/>
-    /*const movieRow = 
-    <table key={movie.id}>
-      <tbody>
-        <tr>
-          <td>
-          <img alt="poster" width="120" src={movie.poster_src}/>
-          </td>
-          <td>
-            {movie.title}
-            <p>{movie.overview}</p>
-          </td>
-        </tr>
-
-      </tbody>
-    </table>*/
+    const movieRow = <MovieRow movie={movie}/>
   movieRows.push(movieRow)
   })
 
 
 
-  this.state = {rows: movieRows}
+  this.state = {rows: movieRows}*/
+  this.performSearch()
+  }
+
+  performSearch(){
+    console.log("Perform search using moviedb")
+    const urlString = "https://api.themoviedb.org/3/search/keyword?api_key=930694ba1ece0a22257165acb5d7eb1b&query=Venom&page=1"
+  $.ajax({
+    url: urlString,
+    success: (searchResults) => {
+      console.log("Fetched data successfully")
+      console.log(searchResults)
+    },
+    error: (xhr, status, err) => {
+      console.log("Failed to fetch data")
+    }
+  })
   }
 
 
