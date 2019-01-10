@@ -44,7 +44,8 @@ class App extends Component {
       var movieRows = []
 
       results.forEach((movie)=>{
-        console.log(movie.title)
+        movie.poster_src = "https://image.tmdb.org/t/p/w185_and_h278_bestv2" + movie.poster_path
+        //console.log(movie.poster_path)
         const movieRow = <MovieRow movie={movie}/>
         movieRows.push(movieRow)
       })
