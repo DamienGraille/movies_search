@@ -27,12 +27,12 @@ class App extends Component {
 
 
   this.state = {rows: movieRows}*/
-  this.performSearch()
+  this.performSearch("avengers")
   }
 
-  performSearch(){
+  performSearch(searchTerm){
     console.log("Perform search using moviedb")
-    const urlString = "https://api.themoviedb.org/3/search/movie?api_key=930694ba1ece0a22257165acb5d7eb1b&language=en-US&query=avengers&page=1&include_adult=false"
+    const urlString = "https://api.themoviedb.org/3/search/movie?api_key=930694ba1ece0a22257165acb5d7eb1b&language=en-US&page=1&include_adult=false&query="+ searchTerm
   $.ajax({
     url: urlString,
     success: (searchResults) => {
@@ -46,7 +46,7 @@ class App extends Component {
       results.forEach((movie)=>{
         movie.poster_src = "https://image.tmdb.org/t/p/w185_and_h278_bestv2" + movie.poster_path
         //console.log(movie.poster_path)
-        const movieRow = <MovieRow movie={movie}/>
+        const movieRow = <MovieRow key={movie.id} movie={movie}/>
         movieRows.push(movieRow)
       })
       this.setState({rows: movieRows})
@@ -57,6 +57,11 @@ class App extends Component {
   })
   }
 
+  searchChangeHandler(event){
+    console.log(event.target.value)
+    const searchTerm = event.target.value
+    this.performSearch(searchTerm)
+  }
 
   render() {
     return (
@@ -75,7 +80,8 @@ class App extends Component {
              </tr>
            </tbody>
          </table>
-         <input className="inputBar"
+         <input className="inputBar" 
+         onChange={this.searchChangeHandler.bind(this)}
          placeholder="Enter search term"/>
       
       {this.state.rows}
